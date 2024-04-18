@@ -58,6 +58,7 @@
                  FontFamily="Microsoft YaHei" 
                  IsReadOnly="True"
                  x:Name="Display">
+            0
         </TextBox>
         <!--#region BUTTON ZAHLEN-->
         <Button Grid.Row="4" 

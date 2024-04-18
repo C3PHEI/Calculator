@@ -21,30 +21,39 @@ namespace Calculator
             Button clickedButton = sender as Button;
             string buttonText = clickedButton.Content.ToString();
 
-            // Überprüfen und Zurücksetzen des Displays, wenn es "Error" enthält
             if (Display.Text == "Error")
             {
                 Display.Text = "";
             }
 
+            // Wenn die aktuelle Anzeige genau "0" ist und die Eingabe eine Zahl ist (kein Komma, kein Operator), ersetze "0"
+            if (Display.Text == "0" && buttonText != "," && buttonText != "+" && buttonText != "-" && buttonText != "x")
+            {
+                Display.Text = ""; 
+            }
+
             if (buttonText == ",")
             {
+                if (Display.Text.Length > 0 && (Display.Text[^1] == '+' || Display.Text[^1] == '-' || Display.Text[^1] == 'x'))
+                {
+                    Display.Text += "0";
+                }
+
                 if (!CanInsertComma(Display.Text))
                 {
-                    return; // Verhindere mehr als ein Komma in der aktuellen Zahl
+                    return; 
                 }
             }
             else if (buttonText == "+" || buttonText == "-" || buttonText == "x")
             {
                 if (ContainsAnyOperator(Display.Text) && Display.Text[Display.Text.Length - 1] != ' ')
                 {
-                    return; // Verhindere mehr als einen Operator im gesamten Ausdruck
+                    return; 
                 }
             }
 
             Display.Text += buttonText;
         }
-
 
         private bool CanInsertComma(string input)
         {
@@ -72,10 +81,11 @@ namespace Calculator
             {
                 Display.Text = "Error";
             }
-        }
+        }       
+        
         private void ClearEntry_Click(object sender, RoutedEventArgs e)
         {
-            Display.Text = "";
+            Display.Text = "0";
         }
 
     }
