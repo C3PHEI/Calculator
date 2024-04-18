@@ -11,7 +11,7 @@
         <Style x:Key="CalculatorButtonStyle" TargetType="Button">
             <Setter Property="Width" Value="80"/>
             <Setter Property="Height" Value="80"/>
-            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontSize" Value="28"/>
             <Setter Property="Margin" Value="10"/>
             <Setter Property="Background" Value="LightGray"/>
             <Setter Property="BorderBrush" Value="Black"/>
@@ -53,8 +53,9 @@
                  Grid.ColumnSpan="4" 
                  VerticalAlignment="Bottom" 
                  HorizontalAlignment="Right" 
-                 Margin="0,0,10,20" 
-                 FontSize="24" 
+                 Margin="0,0,10,20"
+                 BorderThickness="0"
+                 FontSize="30" 
                  FontFamily="Microsoft YaHei" 
                  IsReadOnly="True"
                  x:Name="Display">

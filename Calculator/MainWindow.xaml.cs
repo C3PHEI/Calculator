@@ -32,6 +32,7 @@ namespace Calculator
                 Display.Text = ""; 
             }
 
+            // Wenn ein Komma gesetzt wird geschaut ob es direkt nach ein Operator kommt und setzt dann eine 0 davor
             if (buttonText == ",")
             {
                 if (Display.Text.Length > 0 && (Display.Text[^1] == '+' || Display.Text[^1] == '-' || Display.Text[^1] == 'x'))
