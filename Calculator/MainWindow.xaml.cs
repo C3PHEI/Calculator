@@ -69,25 +69,46 @@ namespace Calculator
             return input.Contains("+") || input.Contains("-") || input.Contains("x");
         }
 
+        private History historyWindow; // Referenz auf das History-Fenster
+
         private void EqualsButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                string expression = Display.Text.Replace('x', '*').Replace(',', '.'); 
+                string expression = Display.Text.Replace('x', '*').Replace(',', '.');
                 DataTable table = new DataTable();
                 var result = table.Compute(expression, "");
-                Display.Text = result.ToString().Replace('.', ','); 
+                string resultText = result.ToString().Replace('.', ',');
+                Display.Text = resultText;
+
+                string historyEntry = $"{expression.Replace('*', 'x').Replace('.', ',')} = {resultText}";
+
+                if (historyWindow == null || !historyWindow.IsLoaded)
+                {
+                    historyWindow = new History();
+                    historyWindow.Show();
+                }
+
+                historyWindow.AddHistoryEntry(historyEntry);
             }
             catch (Exception ex)
             {
                 Display.Text = "Error";
             }
-        }       
-        
+        }
+
+
         private void ClearEntry_Click(object sender, RoutedEventArgs e)
         {
             Display.Text = "0";
         }
+
+        private void OpenHistory_Click(object sender, RoutedEventArgs e)
+        {
+            History historyWindow = new History();
+            historyWindow.Show();
+        }
+
 
     }
 }

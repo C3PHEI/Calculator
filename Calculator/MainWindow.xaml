@@ -25,6 +25,10 @@
             <Setter Property="Background" Value="LightGray"/>
             <Setter Property="BorderBrush" Value="Black"/>
         </Style>
+        <SolidColorBrush Color="DarkBlue" x:Key="Backround"/>
+        <SolidColorBrush Color="AliceBlue" x:Key="BackroundButton"/>
+        <SolidColorBrush Color="AliceBlue" x:Key="BackroundCalc"/>
+        <SolidColorBrush Color="AliceBlue" x:Key="BackroundTestBlock"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -61,6 +65,11 @@
                  x:Name="Display">
             0
         </TextBox>
+        <Button Grid.Row="0"
+                Grid.Column="3"
+                Click="OpenHistory_Click">
+            
+        </Button>
         <!--#region BUTTON ZAHLEN-->
         <Button Grid.Row="4" 
                 Grid.Column="0"
