@@ -29,10 +29,10 @@ namespace Calculator
             // Wenn die aktuelle Anzeige genau "0" ist und die Eingabe eine Zahl ist (kein Komma, kein Operator), ersetze "0"
             if (Display.Text == "0" && buttonText != "," && buttonText != "+" && buttonText != "-" && buttonText != "x")
             {
-                Display.Text = ""; 
+                Display.Text = "";
             }
 
-            // Wenn ein Komma gesetzt wird geschaut ob es direkt nach ein Operator kommt und setzt dann eine 0 davor
+            // Wenn ein Komma gesetzt wird, wird geschaut ob es direkt nach einem Operator kommt und setzt dann eine 0 davor
             if (buttonText == ",")
             {
                 if (Display.Text.Length > 0 && (Display.Text[^1] == '+' || Display.Text[^1] == '-' || Display.Text[^1] == 'x'))
@@ -42,18 +42,29 @@ namespace Calculator
 
                 if (!CanInsertComma(Display.Text))
                 {
-                    return; 
+                    return;
                 }
+
+                // Füge eine 0 hinter dem Komma hinzu
+                Display.Text += ",0";
             }
             else if (buttonText == "+" || buttonText == "-" || buttonText == "x")
             {
                 if (ContainsAnyOperator(Display.Text) && Display.Text[Display.Text.Length - 1] != ' ')
                 {
-                    return; 
+                    return;
                 }
             }
 
-            Display.Text += buttonText;
+            // Ersetze "0" nach einem Komma durch die eingegebene Zahl
+            if (Display.Text.EndsWith(",0") && char.IsDigit(buttonText, 0))
+            {
+                Display.Text = Display.Text.Substring(0, Display.Text.Length - 1) + buttonText;
+            }
+            else
+            {
+                Display.Text += buttonText;
+            }
         }
 
         private bool CanInsertComma(string input)
@@ -97,7 +108,6 @@ namespace Calculator
             }
         }
 
-
         private void ClearEntry_Click(object sender, RoutedEventArgs e)
         {
             Display.Text = "0";
@@ -109,6 +119,9 @@ namespace Calculator
             historyWindow.Show();
         }
 
+        private void Display_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
+        }
     }
 }

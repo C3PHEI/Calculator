@@ -5,25 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="590" Width="416"
-        ResizeMode="NoResize">    
+        Title="MainWindow" Height="590" Width="420"
+        ResizeMode="CanResizeWithGrip"
+        MinWidth="310" MinHeight="440">
     <Window.Resources>
         <Style x:Key="CalculatorButtonStyle" TargetType="Button">
-            <Setter Property="Width" Value="80"/>
-            <Setter Property="Height" Value="80"/>
             <Setter Property="FontSize" Value="28"/>
-            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Margin" Value="5"/>
             <Setter Property="Background" Value="LightGray"/>
             <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="MinWidth" Value="60"/>
+            <Setter Property="MinHeight" Value="60"/>
         </Style>
         <Style x:Key="CalculatorButtonStyleParam" TargetType="Button">
-            <Setter Property="Width" Value="80"/>
-            <Setter Property="Height" Value="80"/>
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Margin" Value="10"/>
             <Setter Property="FontSize" Value="40"/>
+            <Setter Property="Margin" Value="5"/>
             <Setter Property="Background" Value="LightGray"/>
             <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="MinWidth" Value="60"/>
+            <Setter Property="MinHeight" Value="60"/>
         </Style>
         <SolidColorBrush Color="DarkBlue" x:Key="Backround"/>
         <SolidColorBrush Color="AliceBlue" x:Key="BackroundButton"/>
@@ -33,11 +37,11 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" MinHeight="50"/>
-            <RowDefinition Height="*" MinHeight="100"/>
-            <RowDefinition Height="*" MinHeight="100"/>
-            <RowDefinition Height="*" MinHeight="100"/>
-            <RowDefinition Height="*" MinHeight="100"/>
-            <RowDefinition Height="*" MinHeight="100"/>
+            <RowDefinition Height="*" MinHeight="50"/>
+            <RowDefinition Height="*" MinHeight="50"/>
+            <RowDefinition Height="*" MinHeight="50"/>
+            <RowDefinition Height="*" MinHeight="50"/>
+            <RowDefinition Height="*" MinHeight="50"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -59,16 +63,16 @@
                  HorizontalAlignment="Right" 
                  Margin="0,0,10,20"
                  BorderThickness="0"
-                 FontSize="30" 
+                 FontSize="37" 
                  FontFamily="Microsoft YaHei" 
                  IsReadOnly="True"
-                 x:Name="Display">
+                 x:Name="Display" TextChanged="Display_TextChanged">
             0
         </TextBox>
         <Button Grid.Row="0"
                 Grid.Column="3"
                 Click="OpenHistory_Click">
-            
+
         </Button>
         <!--#region BUTTON ZAHLEN-->
         <Button Grid.Row="4" 
