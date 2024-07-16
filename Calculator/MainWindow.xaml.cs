@@ -3,8 +3,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System;
-using System.Windows;
-using System.Windows.Controls;
 using System.Data;
 
 namespace Calculator
@@ -47,6 +45,7 @@ namespace Calculator
 
                 // Füge eine 0 hinter dem Komma hinzu
                 Display.Text += ",0";
+                return;
             }
             else if (buttonText == "+" || buttonText == "-" || buttonText == "x")
             {

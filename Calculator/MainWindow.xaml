@@ -7,41 +7,86 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="590" Width="420"
         ResizeMode="CanResizeWithGrip"
-        MinWidth="310" MinHeight="440">
+        MinHeight="501" MinWidth="312">
     <Window.Resources>
         <Style x:Key="CalculatorButtonStyle" TargetType="Button">
-            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="FontSize" Value="35"/>
             <Setter Property="Margin" Value="5"/>
-            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="Background" Value="white"/>
             <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="VerticalAlignment" Value="Stretch"/>
             <Setter Property="MinWidth" Value="60"/>
             <Setter Property="MinHeight" Value="60"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="3"
+                                CornerRadius="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="Red"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="LightGray"/>
+                    <Setter Property="BorderBrush" Value="Red"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <Style x:Key="CalculatorButtonStyleParam" TargetType="Button">
             <Setter Property="FontSize" Value="40"/>
             <Setter Property="Margin" Value="5"/>
-            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="Background" Value="white"/>
             <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="VerticalAlignment" Value="Stretch"/>
             <Setter Property="MinWidth" Value="60"/>
             <Setter Property="MinHeight" Value="60"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="3"
+                                CornerRadius="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="Red"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="LightGray"/>
+                    <Setter Property="BorderBrush" Value="Red"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
-        <SolidColorBrush Color="DarkBlue" x:Key="Backround"/>
-        <SolidColorBrush Color="AliceBlue" x:Key="BackroundButton"/>
-        <SolidColorBrush Color="AliceBlue" x:Key="BackroundCalc"/>
-        <SolidColorBrush Color="AliceBlue" x:Key="BackroundTestBlock"/>
+        <SolidColorBrush Color="DarkBlue" x:Key="Background"/>
+        <SolidColorBrush Color="AliceBlue" x:Key="BackgroundButton"/>
+        <SolidColorBrush Color="AliceBlue" x:Key="BackgroundCalc"/>
+        <SolidColorBrush Color="AliceBlue" x:Key="BackgroundTestBlock"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" MinHeight="50"/>
+            <RowDefinition Height="0" MinHeight="0"/>
             <RowDefinition Height="*" MinHeight="50"/>
             <RowDefinition Height="*" MinHeight="50"/>
             <RowDefinition Height="*" MinHeight="50"/>
             <RowDefinition Height="*" MinHeight="50"/>
             <RowDefinition Height="*" MinHeight="50"/>
+            <RowDefinition Height="*" MinHeight="100"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -54,25 +99,45 @@
             Grid.ColumnSpan="4"
             FontSize="40" 
             FontWeight="Bold" 
+            FontFamily="Microsoft YaHei" 
             HorizontalAlignment="Center">
-            CALCULATOR
         </TextBlock>
-        <TextBox Grid.Row="1"
-                 Grid.ColumnSpan="4" 
-                 VerticalAlignment="Bottom" 
-                 HorizontalAlignment="Right" 
-                 Margin="0,0,10,20"
+        <Border Grid.Row="1" Grid.ColumnSpan="4" Margin="5,10,5,5" BorderBrush="red" BorderThickness="3" Background="white">
+            <Viewbox Stretch="Uniform" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <TextBlock Text="{Binding ElementName=Display, Path=Text}" 
+                           FontFamily="Microsoft YaHei" 
+                           FontSize="37" 
+                           TextAlignment="Right" 
+                           Padding="5,0,5,0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Stretch"/>
+            </Viewbox>
+        </Border>
+        <TextBox x:Name="Display" 
+                 Text="0"
+                 VerticalAlignment="Stretch" 
+                 HorizontalAlignment="Stretch" 
+                 TextAlignment="Right"
+                 MinHeight="50"
+                 Margin="5,10,5,5"
+                 Padding="5,0,5,0"
                  BorderThickness="0"
                  FontSize="37" 
                  FontFamily="Microsoft YaHei" 
+                 Background="LightGray"
                  IsReadOnly="True"
-                 x:Name="Display" TextChanged="Display_TextChanged">
-            0
-        </TextBox>
-        <Button Grid.Row="0"
-                Grid.Column="3"
+                 Visibility="Collapsed"
+                 TextChanged="Display_TextChanged"/>
+        <Button Grid.Row="6"
+                Grid.ColumnSpan="4"
+                Margin="5,5,5,5"
+                FontFamily="Microsoft YaHei"
+                FontSize="50"
+                BorderBrush="Black"
+                Background="white"
+                BorderThickness="3"
+                Content="HISTORY"
                 Click="OpenHistory_Click">
-
         </Button>
         <!--#region BUTTON ZAHLEN-->
         <Button Grid.Row="4" 
