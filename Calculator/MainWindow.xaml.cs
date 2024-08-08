@@ -93,13 +93,13 @@ namespace Calculator
 
                 string historyEntry = $"{expression.Replace('*', 'x').Replace('.', ',')} = {resultText}";
 
-                if (historyWindow == null || !historyWindow.IsLoaded)
-                {
-                    historyWindow = new History();
-                    historyWindow.Show();
-                }
+                //if (historyWindow == null || !historyWindow.IsLoaded)
+                //{
+                //    historyWindow = new History();
+                //    historyWindow.Show();
+                //}
 
-                historyWindow.AddHistoryEntry(historyEntry);
+                //historyWindow.AddHistoryEntry(historyEntry);
             }
             catch (Exception ex)
             {
